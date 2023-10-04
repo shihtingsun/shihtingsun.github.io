@@ -3,7 +3,7 @@
 <head><meta name="viewport" content="width=device-width, initial-scale=1.0"></head>
     <body>
         <div class="container">
-            <h3>計算您的基礎代謝率</h3>
+            <h3>計算您的TDEE</h3>
             <p>您的性別：</p>
             <input type="radio" id="men" name="gender" value="men" checked>
             <label for="men">男性</label><br>
@@ -12,6 +12,15 @@
             <h4><div>您的年齡： <input type="text" id="age" ></div></h4>
             <h4><div>身高(公分)： <input type="text" id="height" ></div></h4>
             <h4><div>體重(公斤)： <input type="text" id="weight" ></div></h4>
+            <p> 活動係數：</p>
+            <input type="radio" id="sedentary" name="PAL" value="sedentary" checked>
+            <label for="sedentary">久坐不動</label><br>
+            <input type="radio" id="low" name="PAL" value="low">
+            <label for="low">輕度活動量</label><br>
+            <input type="radio" id="active" name="PAL" value="active">
+            <label for="active">中度活動量</label><br>
+            <input type="radio" id="very" name="PAL" value="very">
+            <label for="very">高度活動量</label><br>
             <h4><div><input type="button" value="計算" onclick="calculateBMR()"></div></h4>
             <h4><div id="result"></div></h4>
         </div>
@@ -20,14 +29,34 @@
                 var height = parseFloat(document.getElementById("height").value);
                 var weight = parseFloat(document.getElementById("weight").value);
                 var age = document.getElementById("age").value;
+                var rmr;
+                var low_bmr;
+                var high_bmr
 
                 if (document.getElementById('men').checked) {
-                    var rmr = (10*weight)+(6.25*height)-(5*age)+5;
-                    document.getElementById("result").innerHTML = "您的基礎代謝率為：" + rmr.toFixed(0);
+                    rmr = (10*weight)+(6.25*height)-(5*age)+5;
                 }else{
-                    var rmr = (10*weight)+(6.25*height)-(5*age)-161;
-                    document.getElementById("result").innerHTML = "您的基礎代謝率為：" + rmr.toFixed(0);
+                    rmr = (10*weight)+(6.25*height)-(5*age)-161;
                 }
+                console.log(rmr)
+
+                if (document.getElementById('sedentary').checked) {
+                    low_bmr = 1.0*rmr;
+                    high_bmr = 1.39*rmr;
+                }
+                if (document.getElementById('low').checked) {
+                    low_bmr = 1.4*rmr;
+                    high_bmr = 1.59*rmr;
+                }
+                if (document.getElementById('active').checked) {
+                    low_bmr = 1.6*rmr;
+                    high_bmr = 1.89*rmr;
+                }
+                if (document.getElementById('very').checked) {
+                    low_bmr = 1.9*rmr;
+                    high_bmr = 2.49*rmr;
+                }
+                document.getElementById("result").innerHTML = "您的TDEE為：" + low_bmr.toFixed(1) + " ~ " + high_bmr.toFixed(1);
             }
         </script>
     </body>
