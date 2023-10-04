@@ -1,1 +1,44 @@
-Hello World
+<!DOCTYPE html>
+<html lang="zh-Hant-TW">
+    <body>
+        <div class="container">
+            <h1>計算你的基礎代謝率/h1>
+
+            <p>您的年齡：</p>
+            <input type="checkbox" id="women" name="women" value="women">
+            <label for="women"> 生理女性</label><br>
+            <input type="checkbox" id="men" name="men" value="men">
+            <label for="men"> 生理男性</label><br>
+            <br><br>
+            <div>身高（公分）： <input type="text" class="height" ></div>
+            <br><br>
+            <div>體重（公斤）： <input type="text" class="weight" ></div>
+            <br><br>
+            <div class="end"><input type="submit" value="計算" onclick="onbmr()"></div>
+            <br><br>
+            <p><span class="printbmi"></span></p>
+        </div>
+        <script type="text/javacript">
+            var hv
+            var wv
+            var hegh = document.getElementsByClassName('height')[0];
+            var wegh = document.getElementsByClassName('weight')[0];
+            var print0 = document.getElementsByClassName('printmbi')[0];
+
+            hegh.onchange = function(){
+                hv = this.value
+            }
+            wegh.onchange = function(){
+                wv = this.value
+            }
+            function onbmr(){
+                var bmi = wv/((hv/200)**2);
+                if (hv>0 && wv>0){
+                    print0.innerHTML = '您的基礎代謝率為：' + bmi.toFixed(0);
+                }else{
+                    print0.innerHTML = "體重或身高不可為零";
+                }
+            }
+        </script>
+    </body>
+</html>
