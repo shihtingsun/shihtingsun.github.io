@@ -2,13 +2,8 @@
 <html lang="zh-Hant-TW">
     <body>
         <div class="container">
-            <h1>計算你的基礎代謝率/h1>
-
-            <p>您的年齡：</p>
-            <input type="checkbox" id="women" name="women" value="women">
-            <label for="women"> 生理女性</label><br>
-            <input type="checkbox" id="men" name="men" value="men">
-            <label for="men"> 生理男性</label><br>
+            <h3>計算你的基礎代謝率</h3>
+            <div>您的年齡： <input type="text" class="age" ></div>
             <br><br>
             <div>身高（公分）： <input type="text" class="height" ></div>
             <br><br>
@@ -19,8 +14,8 @@
             <p><span class="printbmi"></span></p>
         </div>
         <script type="text/javacript">
-            var hv
-            var wv
+            var hv;
+            var wv;
             var hegh = document.getElementsByClassName('height')[0];
             var wegh = document.getElementsByClassName('weight')[0];
             var print0 = document.getElementsByClassName('printmbi')[0];
